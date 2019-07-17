@@ -1,0 +1,65 @@
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:9066/eureka/
+  instance:
+    prefer-ip-address: true
+
+server:
+  port: 9067
+  servlet:
+    context-path: /auth
+
+spring:
+  application:
+    name: auth-server
+#  redis:
+#    host: ${REDIS_HOST:192.168.2.240}
+
+#  rabbitmq:
+#    host: ${RABBITMQ_HOST:192.168.2.244}
+#    port: ${RABBITMQ_PORT:5672}
+#    username: ${RABBITMQ_USERNAME:guest}
+#    password: ${RABBITMQ_PASSWORD:guest}
+
+  datasource:
+    url: jdbc:mysql://192.168.2.244:3306/performance_distribut?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    username: dev
+    password: dev@MySQL123
+
+#  datasource:
+#    url: ${JDBC_URL:jdbc:mysql://192.168.2.244:3306/nrsc_question?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false}
+#    username: ${JDBC_USERNAME:root}
+#    password: ${JDBC_PASSWORD:root}
+
+#  datasource:
+#    url: jdbc:mysql://rm-8vb75w94xhctsonixyo.mysql.zhangbei.rds.aliyuncs.com:3306/nrsc_question?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+#    username: xbzyk
+#    password: xbzyk@20190212!@#20190212
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database: MYSQL
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        generate_statistics: false
+        max_fetch_depth: 0
+        hbm2ddl:
+          auto: update
+
+      javax:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+
+
+
+
+
+
+
+

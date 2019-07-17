@@ -1,0 +1,34 @@
+server:
+  port: 9086
+  servlet:
+    context-path: /v1/web
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9066/eureka/
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: web-gateway-server
+  cloud:
+    gateway:
+      routes:
+        - id: auth-server
+          uri: lb://auth-server
+          predicates:
+            - Path=${server.servlet.context-path}/auth/**
+          filters:
+            - StripPrefix= 2
+
+        - id: rank-server
+          uri: lb://rank-server
+          predicates:
+            - Path=${server.servlet.context-path}/rank/**
+          filters:
+            - StripPrefix= 2
+
+
+
